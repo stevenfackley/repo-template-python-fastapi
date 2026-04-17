@@ -1,0 +1,14 @@
+services:
+  {{PROJECT_NAME}}:
+    image: ${IMAGE_REF}
+    container_name: {{PROJECT_NAME}}
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

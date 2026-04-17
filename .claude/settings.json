@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker build:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker logs:*)",
+      "Bash(uv pip:*)",
+      "Bash(uv run:*)",
+      "Bash(uv lock)",
+      "Bash(pytest:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(python -m:*)",
+      "Bash(kubectl get:*)",
+      "Bash(kubectl logs:*)",
+      "Bash(helm template:*)",
+      "Bash(aws ecr:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /:*)",
+      "Bash(git push --force:*)",
+      "Bash(aws iam:*)",
+      "Bash(pip install:*)"
+    ]
+  },
+  "env": {
+    "POWERSHELL_TELEMETRY_OPTOUT": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  }
+}
