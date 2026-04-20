@@ -1,6 +1,6 @@
 # Multi-stage Python build. Distroless runtime, non-root.
 
-FROM python:3.11-slim AS build
+FROM python:3.14-slim AS build
 WORKDIR /src
 RUN pip install --no-cache-dir uv==0.5.*
 
