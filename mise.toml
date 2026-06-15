@@ -1,0 +1,10 @@
+[tasks]
+dev = "uv run uvicorn app.main:app --reload"
+lint = "uv run ruff check ."
+format = "uv run ruff format ."
+typecheck = "uv run mypy src"
+test = "uv run pytest"
+setup = "uv sync"
+
+[env]
+# non-secret config — secrets stay in .env
