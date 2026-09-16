@@ -11,8 +11,9 @@ concurrency:
 
 jobs:
   ci:
+    if: github.repository != 'stevenfackley/repo-template-python-fastapi'
     uses: stevenfackley/gh-actions/.github/workflows/ci-python.yml@v1
     with:
-      project-name: {{PROJECT_NAME}}
+      project-name: "{{PROJECT_NAME}}"
       python-version: "3.11"
     secrets: inherit
