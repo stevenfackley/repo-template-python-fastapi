@@ -10,6 +10,7 @@ on:
 
 jobs:
   build-push:
+    if: github.repository != 'stevenfackley/repo-template-python-fastapi'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -30,6 +31,7 @@ jobs:
 
   verify:
     needs: build-push
+    if: github.repository != 'stevenfackley/repo-template-python-fastapi'
     runs-on: ubuntu-latest
     steps:
       - uses: stevenfackley/gh-actions/.github/actions/verify-image@v1
@@ -40,16 +42,18 @@ jobs:
 
   deploy:
     needs: [build-push, verify]
+    if: github.repository != 'stevenfackley/repo-template-python-fastapi'
     uses: stevenfackley/gh-actions/.github/workflows/deploy-ec2-ssh.yml@v1
     with:
       image-ref: ${{ needs.build-push.outputs.image-ref }}
       environment: production
       health-url: http://localhost:8080/health
-      container-name: {{PROJECT_NAME}}
+      container-name: "{{PROJECT_NAME}}"
     secrets: inherit
 
   triage:
     needs: deploy
+    if: github.repository != 'stevenfackley/repo-template-python-fastapi'
     uses: stevenfackley/gh-actions/.github/workflows/triage-issues.yml@v1
     with:
       after_sha: ${{ github.sha }}
