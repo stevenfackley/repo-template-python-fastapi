@@ -1,6 +1,8 @@
 # Multi-stage Python build. Distroless runtime, non-root.
 
-FROM python:3.14-slim AS build
+# Keep this Python minor in lockstep with the distroless runtime below (python3-debian12 = 3.11)
+# and pyproject requires-python; Dependabot python minor/major bumps are ignored for this reason.
+FROM python:3.11-slim AS build
 WORKDIR /src
 RUN pip install --no-cache-dir uv==0.5.*
 

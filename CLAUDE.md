@@ -9,10 +9,10 @@ analyze -> read docs/ -> read pyproject.toml -> plan -> work.
 ## Conventions
 - Image tags: `sha-{SHORT_SHA}` (test), `prod-{SHA}` (prod).
 - Release tags: `YYYYMMDD_{{PROJECT_NAME}}_Release`.
-- Deps: `uv pip` over pip. Pinned in `uv.lock`.
+- Deps: `uv pip` over pip. Range-pinned (`>=`) in `pyproject.toml`; no `uv.lock` committed yet.
 - Lint: `ruff check`, `ruff format --check`.
 - Types: strict mypy.
-- Tests: pytest + pytest-asyncio. E2E smoke on PR, integration on main.
+- Tests: pytest + pytest-asyncio (unit + in-process integration) in `ci` on PR and main. Post-deploy smoke = the deploy workflows' `/health` check. No scheduled E2E integration workflow yet.
 - Commits: Conventional Commits.
 
 ## Deploy target

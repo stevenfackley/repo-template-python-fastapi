@@ -1,8 +1,10 @@
 ---
-description: Roll the image tag in docker-compose.prod.yml.
-argument-hint: "<short-sha>"
+description: Redeploy prod from a given commit (the image ref is set at deploy time, not in compose).
+argument-hint: "<git-sha>"
 ---
 
-1. Verify tag exists in GHCR: `gh api /user/packages/container/${REPO}/versions`.
-2. Replace existing `sha-[0-9a-f]+` in `docker-compose.prod.yml` with `sha-$ARGUMENTS`.
-3. `git diff` — show diff, do not commit.
+`docker-compose.prod.yml` uses `image: ${IMAGE_REF}`; `deploy-ec2-ssh` supplies it at deploy time. There is no tag to edit in the repo.
+
+1. Verify the commit exists: `git rev-parse --verify $ARGUMENTS^{commit}`.
+2. Show the command, do not run it without confirmation: `gh workflow run deploy-prod.yml -f ref=$ARGUMENTS` (rebuilds and deploys that ref).
+3. For an instant rollback to an already-pushed digest, follow `docs/runbooks/rollback.md` instead.

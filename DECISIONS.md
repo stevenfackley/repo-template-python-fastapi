@@ -7,4 +7,4 @@ ADR log. Append-only.
 **Status:** accepted
 **Context:** Greenfield service under `repo-template-python-fastapi`. Async IO, quick iteration.
 **Decision:** Python 3.11, FastAPI, Pydantic v2, ruff + mypy + pytest, uv for dep management.
-**Consequences:** uv lockfile authoritative; pip forbidden in CI. No telemetry SDKs (CI-enforced).
+**Consequences:** deps range-pinned in `pyproject.toml` (no `uv.lock` committed yet); pip forbidden in CI. No telemetry SDKs (CI-enforced).

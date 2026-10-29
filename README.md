@@ -10,7 +10,7 @@ uv run uvicorn app.main:app --reload --port 8080
 curl http://localhost:8080/health
 ```
 
-Full dev-env setup: see `C:\Users\steve\projects\DEV_SETUP_GUIDE.md`.
+Full dev-env setup: see [docs/user/getting-started.md](docs/user/getting-started.md).
 
 ## Docker
 
